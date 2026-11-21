@@ -436,7 +436,7 @@ void cv::cuda::GpuMat::create(int _rows, int _cols, int _type)
 void cv::cuda::GpuMat::release()
 {
     if( refcount && CV_XADD(refcount, -1) == 1 )
-        defaultAllocator()->free(this);
+        allocator->free(this);
     dataend = datastart = data = 0;
     step = 0;
     refcount = 0;
